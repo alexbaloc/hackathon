@@ -10,9 +10,8 @@ var coinbase = {
 
 var web3 = new Web3();
 
+//wrapper for all exposed methods
 var eth = {};
-
-
 eth.setup = function() {
     web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 }
@@ -29,6 +28,10 @@ eth.ensureFunds = function(account) {
         web3.personal.unlockAccount(coinbase.address, coinbase.password);
         web3.eth.sendTransaction({from: coinbase.address, to: wallet, value: web3.toWei(1, "ether")})
     }
+}
+
+eth.getweb3 = function() {
+    return web3;
 }
 
 

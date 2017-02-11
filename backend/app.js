@@ -12,6 +12,7 @@ var cors = require('cors')
 var routes = require('./routes/index');
 var users = require('./routes/user');
 var company = require('./routes/company');
+var contract = require('./routes/contract');
 
 var eth = require('./services/ethereum');
 
@@ -33,6 +34,7 @@ app.use(cookieParser());
 app.use('/', routes);
 app.use('/users', users);
 app.use('/company', company);
+app.use('/contract', contract);
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {
