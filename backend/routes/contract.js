@@ -20,33 +20,39 @@ router.get('/setup', function(req, res) {
     return res.json({message: 'funded!'});
 });
 
-router.get('/create', function(req, res) {
-    var actionData = params.getAt(0);
+router.post('/create', function(req, res) {
+    var data = {
+        startDate: req.body.startDate,
+        salary: req.body.salary,
+        franchise: req.body.franchise,
+        accrual: req.body.accrual
+    };
 
-    smartContract.create(identity.getByName(actionData.company), identity.getByName('alex'), actionData.data);
-
+    smartContract.create(identity.getByName(req.body.company), identity.getUser(), data);
     return res.json({message: 'ok'});
 });
 
-router.get('/close/:actionId', function(req, res) {
-    var actionData = params.getAt(req.params.actionId || 1);
+router.post('/close', function(req, res) {
+    var company = req.body.company;
+    var date = req.body.date;
 
-    var company = actionData.company;
-    var date = actionData.data;
-
-    smartContract.close(identity.getByName(company), identity.getByName('alex'), date);
+    smartContract.close(identity.getByName(company), identity.getUser(), date);
 
     return res.json({message: 'ok'});
   
 });
 
-router.get('/restart/:actionId', function(req, res) {
+router.post('/restart', function(req, res) {
     var actionData = params.getAt(req.params.actionId);
 
-    var company = actionData.company;
-    var data = actionData.data;
-
-    smartContract.restart(identity.getByName(company), identity.getByName('alex'), data);
+    var company = req.body.company;
+    var data = {
+        startDate: req.body.startDate,
+        salary: req.body.salary,
+        franchise: req.body.franchise,
+        accrual: req.body.accrual
+    };
+    smartContract.restart(identity.getByName(company), identity.getUser(), data);
 
     return res.json({message: 'ok'});
 });

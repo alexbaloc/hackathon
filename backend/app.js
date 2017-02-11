@@ -13,6 +13,8 @@ var routes = require('./routes/index');
 var users = require('./routes/user');
 var company = require('./routes/company');
 var contract = require('./routes/contract');
+//temporary, only for browser-based tests
+var contractTests = require('./routes/contractTests');
 
 var eth = require('./services/ethereum');
 var smartContract = require('./services/smartContract');
@@ -36,6 +38,8 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/company', company);
 app.use('/contract', contract);
+//TODO: remove once UI is in place
+app.use('/test', contractTests);
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {

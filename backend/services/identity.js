@@ -9,7 +9,6 @@ var accounts = [
             walletNo: 1,
             password: "test"
         },
-        password: "test",
         type: "company"
     },
     {
@@ -19,7 +18,6 @@ var accounts = [
             walletNo: 3,
             password: "test"
         },
-        password: "test",
         type: "company"
     },
     {
@@ -29,14 +27,15 @@ var accounts = [
             walletNo: 2,
             password: "test"
         },
-        password: "test"
+        type: "company"
     }
 ];
 
 var findAccount = function(name, type) {
     return _.find(accounts, function(acc) {
         var isRightType = typeof type === 'undefined' || acc.type === type;
-        return isRightType && (name.toLowerCase() === acc.name.toLowerCase());
+        var isRightName = typeof name === 'undefined' || name.toLowerCase() === acc.name.toLowerCase();
+        return isRightType && isRightName;
     } );
 }
 
@@ -54,6 +53,11 @@ identity.getByNameAndType = function(name, type) {
 
 identity.getByName = function(name) {
     return findAccount(name);
+}
+
+//There's only one user in our system, so return it
+identity.getUser = function() {
+    return findAccount(undefined, 'user');
 }
 
 module.exports = identity;
