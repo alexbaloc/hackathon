@@ -4,7 +4,6 @@ var _ = require('lodash');
 var accounts = [
     {
         name: "Cegeka",
-        email: "cegeka@test.com",
         eth: {
             walletNo: 1,
             password: "test"
@@ -13,7 +12,6 @@ var accounts = [
     },
     {
         name: "BMW",
-        email: "BMW@test.com",
         eth: {
             walletNo: 3,
             password: "test"

@@ -22,7 +22,8 @@ router.get('/setup', function(req, res) {
 
 router.post('/create', function(req, res) {
     var data = {
-        startDate: req.body.startDate,
+        //input is in milliseconds => convert it to a date
+        startDate: new Date(req.body.startDate),
         salary: req.body.salary,
         franchise: req.body.franchise,
         accrual: req.body.accrual
