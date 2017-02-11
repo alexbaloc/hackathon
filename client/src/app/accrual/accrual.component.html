@@ -1,12 +1,10 @@
 <div class="accrual">
-  <h1>Accrual</h1>
+  <h1>Console</h1>
 
-  <div class="accrual-charts">
-
-    <div *ngFor="let smartcontract of smartcontracts" class="accrual-chart">
-      <canvas baseChart width="300" height="100" [datasets]="smartcontract.data" [labels]="smartcontract.labels" [options]="lineChartOptions"
-        [colors]="smartcontract.color" [legend]="lineChartLegend" [chartType]="lineChartType"></canvas>
-    </div>
+  <div>
+    <span>Current Time: {{getCurrentTime() | date:'shortDate'}}</span>
+    <button class="btn" (click)="play()">Play</button>
+    <button class="btn" (click)="pause()">Pause</button>
   </div>
 
 </div>

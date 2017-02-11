@@ -11,11 +11,11 @@ var web3 = new Web3();
 
 //wrapper for all exposed methods
 var eth = {};
-eth.setup = function() {
+eth.setup = function () {
     web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 }
 
-eth.ensureFunds = function(account) {
+eth.ensureFunds = function (account) {
     var wallet = web3.eth.accounts[account.eth.walletNo];
     if (wallet == undefined) {
         console.error('account ' + account.name + ' does not have an ethereum wallet: no ' + account.eth.walletNo);
@@ -32,7 +32,7 @@ eth.ensureFunds = function(account) {
     }
 }
 
-eth.getweb3 = function() {
+eth.getweb3 = function () {
     return web3;
 }
 
