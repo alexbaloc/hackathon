@@ -1,0 +1,22 @@
+#
+#   Docker for go ethereum with solidity compiler
+#
+
+FROM ethereum/client-go
+
+#install solc. Taken from https://gist.github.com/konradkonrad/38a02157ddb379e831ea0642a7ee6585
+RUN apt-get -y update &&\
+ apt-get -y install language-pack-en-base &&\
+ dpkg-reconfigure locales &&\
+ apt-get -y install software-properties-common &&\
+ add-apt-repository -y ppa:ethereum/ethereum &&\
+ add-apt-repository -y ppa:ethereum/ethereum-dev &&\
+ apt-get -y update
+# apt-get -y upgrade
+
+RUN apt-get -y install solc
+
+CMD mkdir /opt/
+COPY build/* /opt/
+
+ENTRYPOINT ["/opt/start_geth.sh"]

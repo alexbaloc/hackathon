@@ -1,0 +1,13 @@
+
+eth1:
+  build: .
+  dockerfile: Dockerfile.ethereum
+  volumes:
+    - ./.commmon/ethereum:/root/.ethereum
+    - ./.commmon/ethasha:/root/.ethash
+    - .:/root/volume:ro
+  ports:
+    - 8545:8545
+  environment:
+    RPCPORT: 8545
+    DATADIR: /root/.ethereum
