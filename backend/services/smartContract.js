@@ -20,10 +20,10 @@ contract.create = function(company, user) {
     var web3 = ethereum.getweb3();
     var contractTemplate = web3.eth.contract(JSON.parse(outputContract.interface));
 
-    web3.personal.unlockAccount(web3.eth.accounts[0], "test");
+    web3.personal.unlockAccount(web3.eth.accounts[company.eth.walletNo], company.eth.password);
 
-    var contract = contractTemplate.new("0x123", 5, 6, {
-        from: web3.eth.accounts[0], 
+    var contract = contractTemplate.new(web3.eth.accounts[user.eth.walletNo], 5, 6, {
+        from: web3.eth.accounts[company.eth.walletNo], 
         data: '0x' + outputContract.bytecode, 
         gas: '4700000'
     }, function(e, contract){
