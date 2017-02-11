@@ -1,3 +1,4 @@
+pragma solidity ^0.4.0;
 
 contract PensionFund {
     address company;
@@ -39,13 +40,17 @@ contract PensionFund {
         
         addState(date, salary, franchise, accrual, Type.Start);
     }
-    
-    /*
-    function changeParameters(uint _added, uint _accrual) public onlyCompany {
-        events[eventsNo].status = Status.Changed;
-        addState(_added, _accrual, Status.Active);
+
+    function restart(string _companyName, uint date, uint salary, uint franchise, uint accrual) public {
+        if (company != 0x0) {
+            throw;
+        }        
+        
+        company = msg.sender;
+        companyName = _companyName;
+        
+        addState(date, salary, franchise, accrual, Type.Start);
     }
-    */
     
     function close(uint date) public onlyCompany {
         addState(date, 0, 0, 0, Type.End);
@@ -53,7 +58,6 @@ contract PensionFund {
         company = 0x0;
         companyName = "";
     }
-
 
     
     function addState(uint date, uint salary, uint franchise, uint accrual, 
