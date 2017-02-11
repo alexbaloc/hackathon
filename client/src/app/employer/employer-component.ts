@@ -1,34 +1,33 @@
-
-import { Component } from '@angular/core';
+import { SmartContractService } from './../services/smartcontracts.service';
+import { TimeService } from './../services/time.service';
+import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'employer',
   templateUrl: './employer.component.html',
   styleUrls: ['./employer.component.css']
 })
-export class EmployerComponent {
+export class EmployerComponent extends OnInit {
 
-  smartcontracts = [
-    {
-      parameters: {
-        x: 10,
-        y: 11,
-        z: 12
-      }
-    },
-    {
-      parameters: {
-        x: 13,
-        y: 14,
-        z: 15
-      }
-    },
-    {
-      parameters: {
-        x: 16,
-        y: 17,
-        z: 18
-      }
-    }
-  ]
+  smartcontracts = [];
+
+  constructor(private timeService: TimeService, private smartContractService: SmartContractService) {
+    super();
+  }
+
+  ngOnInit() {
+    this.timeService
+      .getApplicationObservable()
+      .subscribe(() => this.propagateChange());
+  }
+
+  propagateChange() {
+    const contracts = this.smartContractService.getSmartContracts();
+    const currentDate = this.timeService.getCurrentDate();
+
+    this.smartcontracts = contracts.filter(item => {
+      return moment(item.dateInService).isBefore(currentDate);
+    });
+  }
 }

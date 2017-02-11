@@ -1,3 +1,6 @@
+import { SmartContractService } from './services/smartcontracts.service';
+import { ApplicationService } from './services/application.service';
+import { TimeService } from './services/time.service';
 import { PensionService } from './services/pension.service';
 import { AccrualComponent } from './accrual/accrual-component';
 import { CustomerComponent } from './customer/customer-component';
@@ -27,7 +30,7 @@ import { AppComponent } from './app.component';
     HttpModule,
     ChartsModule
   ],
-  providers: [PensionService],
+  providers: [PensionService, SmartContractService, TimeService, ApplicationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
