@@ -4,6 +4,7 @@ var router = express.Router();
 var ethereum = require('../services/ethereum');
 var identity = require('../services/identity');
 var smartContract = require('../services/smartContract');
+var params = require('../services/params');
 
 router.get('/', function(req, res) {
     return res.json(smartContract.getParsedEvents());
@@ -29,24 +30,25 @@ router.get('/create', function(req, res) {
     return res.json({message: 'ok'});
 });
 
-router.get('/close', function(req, res) {
-    var date = new Date('12-31-2016 12:00:00');
+router.get('/close/:actionId', function(req, res) {
+    var actionData = params.getAt(req.params.actionId || 1);
 
-    smartContract.close(identity.getByName('cegeka'), identity.getByName('alex'), date);
+    var company = actionData.company;
+    var date = actionData.data;
+
+    smartContract.close(identity.getByName(company), identity.getByName('alex'), date);
 
     return res.json({message: 'ok'});
   
 });
 
-router.get('/restart', function(req, res) {
-    var data = {
-        startDate: new Date('1-01-2017 12:00:00'),
-        salary: 85000,
-        franchise: 13500,
-        accrual: 1200
-    };
+router.get('/restart/:actionId', function(req, res) {
+    var actionData = params.getAt(req.params.actionId);
 
-    smartContract.restart(identity.getByName('bmw'), identity.getByName('alex'), data);
+    var company = actionData.company;
+    var data = actionData.data;
+
+    smartContract.restart(identity.getByName(company), identity.getByName('alex'), data);
 
     return res.json({message: 'ok'});
 });

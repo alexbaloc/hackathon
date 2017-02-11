@@ -8,7 +8,7 @@ var ethereum = require('./ethereum');
 //wrapper for all exposed methods
 var contracts = {};
 //COMMENT OUT
-contracts.existing = "0x61dabf08cd7f4fe327459b0221aba46386cc5898";
+//contracts.existing = "0x61dabf08cd7f4fe327459b0221aba46386cc5898";
 
 var getContractCode = function() {
     if(!contracts.cachedContract) {
