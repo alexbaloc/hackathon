@@ -4,7 +4,6 @@ var Web3 = require('web3');
 
 var coinbase = {
         walletNo: 0,
-        address: "0x3b3cb9fe4e3e3ae8d874bbfc79c6f0933dd9b132",
         password: "test"
 };
 
@@ -24,9 +23,12 @@ eth.ensureFunds = function(account) {
     }
 
     var balance = web3.eth.getBalance(wallet).toNumber();
-    if (balance < 1) {
-        web3.personal.unlockAccount(coinbase.address, coinbase.password);
-        web3.eth.sendTransaction({from: coinbase.address, to: wallet, value: web3.toWei(1, "ether")})
+    console.log('address ' + wallet + ' has ' + balance);
+    if (balance < web3.toWei(2, 'ether')) 
+    {
+        var coinbaseAddress = web3.eth.accounts[coinbase.walletNo];
+        web3.personal.unlockAccount(coinbaseAddress, coinbase.password);
+        web3.eth.sendTransaction({from: coinbaseAddress, to: wallet, value: web3.toWei(2, "ether")})
     }
 }
 

@@ -24,6 +24,10 @@ var getContractCode = function() {
     return contracts.cachedContract;
 }
 
+contracts.cacheABI = function() {
+    getContractCode();
+}
+
 var getExistingInstance = function() {
     if (!contracts.existing) {
         console.error("No contract mined");

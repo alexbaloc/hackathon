@@ -14,18 +14,16 @@ router.get('/setup', function(req, res) {
     ethereum.ensureFunds(identity.getByName('cegeka'));
     ethereum.ensureFunds(identity.getByName('BMW'));
 
+    //also pre-compile the contract code to speed up next operations
+    smartContract.cacheABI();
+
     return res.json({message: 'funded!'});
 });
 
 router.get('/create', function(req, res) {
-    var data = {
-        startDate: new Date('1-04-2013 12:00:00'),
-        salary: 45000,
-        franchise: 13500,
-        accrual: 1875
-    };
+    var actionData = params.getAt(0);
 
-    smartContract.create(identity.getByName('cegeka'), identity.getByName('alex'), data);
+    smartContract.create(identity.getByName(actionData.company), identity.getByName('alex'), actionData.data);
 
     return res.json({message: 'ok'});
 });
