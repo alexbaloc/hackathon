@@ -15,6 +15,7 @@ var company = require('./routes/company');
 var contract = require('./routes/contract');
 
 var eth = require('./services/ethereum');
+var smartContract = require('./services/smartContract');
 
 var app = express();
 
@@ -72,6 +73,7 @@ app.use(function (err, req, res, next) {
 
 //Initialize ethereum
 eth.setup();
+//smartContract.create();
 
 
 module.exports = app;

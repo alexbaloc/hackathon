@@ -5,9 +5,23 @@ var ethereum = require('../services/ethereum');
 var identity = require('../services/identity');
 var smartContract = require('../services/smartContract');
 
-router.get('/test', function(req, res) {
+router.get('/', function(req, res) {
+    //return res.json(placeholder.getAllEvents());
+    return res.json(smartContract.getParsedEvents());
+});
 
-    smartContract.create(identity.getByName('cegeka'), identity.getByName('alex'));
+router.get('/create', function(req, res) {
+    var company = identity.getByName('cegeka');
+    ethereum.ensureFunds(company);
+
+    smartContract.create(company, identity.getByName('alex'));
+
+    return res.json({message: 'ok'});
+});
+
+router.get('/close', function(req, res) {
+
+    smartContract.close(identity.getByName('cegeka'), identity.getByName('alex'));
 
     return res.json({message: 'ok'});
   
