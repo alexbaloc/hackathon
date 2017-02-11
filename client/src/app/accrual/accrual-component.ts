@@ -11,6 +11,9 @@ import * as moment from 'moment';
 })
 export class AccrualComponent extends OnInit {
 
+  newContract = {};
+  successMessage = null;
+
   constructor(private timeService: TimeService, private smartContractService: SmartContractService) {
     super();
   }
@@ -44,6 +47,15 @@ export class AccrualComponent extends OnInit {
 
   getCurrentTime() {
     return this.timeService.getCurrentDate().toDate();
+  }
+
+  addContract() {
+    this.smartContractService
+      .create(this.newContract)
+      .subscribe(
+      () => this.successMessage = 'Gelukt!',
+      error => this.successMessage = JSON.stringify(error)
+      );
   }
 
 }

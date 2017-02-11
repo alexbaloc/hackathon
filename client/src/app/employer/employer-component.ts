@@ -23,11 +23,8 @@ export class EmployerComponent extends OnInit {
   }
 
   propagateChange() {
-    const contracts = this.smartContractService.getSmartContracts();
-    const currentDate = this.timeService.getCurrentDate();
-
-    this.smartcontracts = contracts.filter(item => {
-      return moment(item.dateInService).isBefore(currentDate);
-    });
+    this.smartContractService.getSmartContracts()
+      .subscribe(contracts => this.smartcontracts = contracts);
   }
+
 }

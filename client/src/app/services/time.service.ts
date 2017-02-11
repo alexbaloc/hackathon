@@ -26,7 +26,7 @@ export class TimeService {
   start() {
     this.applicationObservable = Observable.interval(5000)
       .takeWhile(() => !this.paused)
-      .map(() => { this.progressOneMonth() })
+      .map(() => this.progressOneMonth())
       .share();
   }
 

@@ -3,7 +3,39 @@
 
   <div>
     <span>Current Time: {{getCurrentTime() | date:'shortDate'}}</span>
+    <br />
     <button class="btn" (click)="togglePause()">{{isPaused() ? 'Play' : 'Pause'}}</button>
+  </div>
+
+  <div>
+    <h3>Create Smart Contract</h3>
+    <div class="form-group">
+      <label for="companyName">Company Name</label>
+      <select [(ngModel)]="newContract.company">
+        <option>cegeka</option>
+        <option>BMW</option>
+        <option>KPMG</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input type="text" class="form-control" id="date" placeholder="Date" [(ngModel)]="newContract.startDate">
+    </div>
+    <div class="form-group">
+      <label for="salary">Annual Salary</label>
+      <input type="number" class="form-control" id="salary" placeholder="Salary" [(ngModel)]="newContract.salary">
+    </div>
+    <div class="form-group">
+      <label for="franchise">Franchise</label>
+      <input type="number" class="form-control" id="franchise" placeholder="Franchise" [(ngModel)]="newContract.franchise">
+    </div>
+    <div class="form-group">
+      <label for="franchise">Accrual Rate</label>
+      <input type="number" class="form-control" id="franchise" placeholder="Accrual Rate" [(ngModel)]="newContract.accrual">
+    </div>
+    <button (click)="addContract()" class="btn btn-default">Submit</button>
+
+    <p *ngIf="successMessage">{{successMessage}}</p>
   </div>
 
 </div>

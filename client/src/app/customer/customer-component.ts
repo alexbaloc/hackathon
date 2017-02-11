@@ -1,18 +1,41 @@
+import { SmartContractService } from './../services/smartcontracts.service';
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'customer',
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css']
 })
-export class CustomerComponent {
+export class CustomerComponent extends OnInit {
 
   customer = {
-    currentIncome: 30000,
-    pensionToday: 20000,
-    pensionExpected: 2034,
+    currentIncome: 0,
+    pensionToday: 0,
+    pensionExpected: 0,
     health: 'good'
+  };
+
+  constructor(private smartContractService: SmartContractService) {
+    super();
+  }
+
+  ngOnInit() {
+    this.smartContractService
+      .getSmartContracts()
+      .subscribe(smartContracts => {
+        this.calculateTotals(smartContracts);
+      });
+  }
+
+  calculateTotals(smartContracts: Array<any>) {
+    let sum = 0;
+    smartContracts.forEach(contract => {
+      sum += contract.totalSavings;
+    });
+    this.customer.currentIncome = smartContracts.find(contract => !contract.endDate).salary;
+    this.customer.pensionToday = sum;
+    this.customer.pensionExpected = 2000;
   }
 
   messages = [];

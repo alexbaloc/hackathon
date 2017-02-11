@@ -8,7 +8,7 @@ var ethereum = require('./ethereum');
 //wrapper for all exposed methods
 var contracts = {};
 //COMMENT OUT
-contracts.existing = "0x6dd473a180fa0534ea95942df8a13ae08a0a1469";
+// contracts.existing = "0x6dd473a180fa0534ea95942df8a13ae08a0a1469";
 
 var getContractCode = function () {
     if (!contracts.cachedContract) {
@@ -24,11 +24,11 @@ var getContractCode = function () {
     return contracts.cachedContract;
 }
 
-contracts.cacheABI = function() {
+contracts.cacheABI = function () {
     getContractCode();
 }
 
-var getExistingInstance = function() {
+var getExistingInstance = function () {
     if (!contracts.existing) {
         console.error("No contract mined");
         return;
@@ -42,7 +42,7 @@ var getExistingInstance = function() {
 }
 
 
-contracts.create = function(company, user, data) {
+contracts.create = function (company, user, data) {
 
     var outputContract = getContractCode();
     var web3 = ethereum.getweb3();
@@ -61,9 +61,9 @@ contracts.create = function(company, user, data) {
             from: web3.eth.accounts[company.eth.walletNo],
             data: '0x' + outputContract.bytecode,
             gas: '5000000'
-        }, function(e, contract){
-            if(!e) {
-                if(contract.address) {
+        }, function (e, contract) {
+            if (!e) {
+                if (contract.address) {
                     console.log("Contract mined! Address: " + contract.address);
                     //save for later
                     contracts.existing = contract.address;
@@ -73,7 +73,7 @@ contracts.create = function(company, user, data) {
 }
 
 
-contracts.close = function(company, user, date) {
+contracts.close = function (company, user, date) {
     if (!contracts.existing) {
         console.error("No contract mined");
         return;
@@ -87,19 +87,19 @@ contracts.close = function(company, user, date) {
     web3.personal.unlockAccount(web3.eth.accounts[company.eth.walletNo], company.eth.password);
 
     prevContractInstance.close(date.getTime(),
-    {
-        from: web3.eth.accounts[company.eth.walletNo],
-        data: '0x' + outputContract.bytecode,
-        gas: '5000000'
-    }, function(e, tx){
-        if(!e) {
-            console.log('closed instance', tx);
-        }
-    });
+        {
+            from: web3.eth.accounts[company.eth.walletNo],
+            data: '0x' + outputContract.bytecode,
+            gas: '5000000'
+        }, function (e, tx) {
+            if (!e) {
+                console.log('closed instance', tx);
+            }
+        });
 }
 
 
-contracts.restart = function(company, user, data) {
+contracts.restart = function (company, user, data) {
     if (!contracts.existing) {
         console.error("No contract mined");
         return;
@@ -120,14 +120,14 @@ contracts.restart = function(company, user, data) {
             from: web3.eth.accounts[company.eth.walletNo],
             data: '0x' + outputContract.bytecode,
             gas: '5000000'
-        }, function(e, tx){
-            if(!e) {
+        }, function (e, tx) {
+            if (!e) {
                 console.log('restart done', tx);
             }
         });
 }
 
-contracts.getParsedEvents = function() {
+contracts.getParsedEvents = function () {
     var eventsList = contracts.getAllEvents();
     var curated = [];
 
@@ -151,7 +151,7 @@ contracts.getParsedEvents = function() {
     return curated;
 }
 
-contracts.getAllEvents = function() {
+contracts.getAllEvents = function () {
     var prevContractInstance = getExistingInstance();
     if (!prevContractInstance) {
         return;
