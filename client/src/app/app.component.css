@@ -1,0 +1,24 @@
+.top-part {
+    display: flex;
+    direction: row;
+    height: 92vh;
+}
+
+.top-part>div {
+    flex: 1;
+    border-right: 1px solid darkgray;
+}
+
+.top-part>div:last-child {
+    border: none;
+}
+
+.total-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom-part {
+    height: 8vh;
+    border-top: 1px solid darkgray;
+}

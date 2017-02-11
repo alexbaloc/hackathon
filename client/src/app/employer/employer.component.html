@@ -1,0 +1,16 @@
+<div class="employer">
+  <h1>Employer</h1>
+
+  <ol>
+    <li *ngFor="let smartcontract of smartcontracts; let ind = index">
+      <div class="smartcontract-{{ind + 1}}">
+        <h2>Smart contract {{ind + 1}}</h2>
+        <ul>
+          <li>parameter x: {{smartcontract.parameters.x}}</li>
+          <li>parameter y: {{smartcontract.parameters.y}}</li>
+          <li>parameter z: {{smartcontract.parameters.z}}</li>
+        </ul>
+      </div>
+    </li>
+  </ol>
+</div>

@@ -1,0 +1,15 @@
+.statusbar {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+.status-block {
+    height: 100%;
+    width: 2%;
+    flex-shrink: 1;
+    flex-grow: 0;
+    margin-right: 2px;
+}
