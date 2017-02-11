@@ -73,7 +73,5 @@ app.use(function (err, req, res, next) {
 
 //Initialize ethereum
 eth.setup();
-//smartContract.create();
-
 
 module.exports = app;

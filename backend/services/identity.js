@@ -13,7 +13,16 @@ var accounts = [
         email: "cegeka@test.com",
         eth: {
             walletNo: 1,
-            address: "0x3f00eadbf888651ff3f19d79b7d842078e64dacd",
+            password: "test"
+        },
+        password: "test",
+        type: "company"
+    },
+    {
+        name: "BMW",
+        email: "BMW@test.com",
+        eth: {
+            walletNo: 3,
             password: "test"
         },
         password: "test",
@@ -24,7 +33,6 @@ var accounts = [
         email: "alex@local.com",
         eth: {
             walletNo: 2,
-            address: "",
             password: "test"
         },
         password: "test"
