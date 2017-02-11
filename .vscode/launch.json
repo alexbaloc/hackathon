@@ -13,11 +13,10 @@
             "runtimeExecutable": "npm.cmd"
         },
         "runtimeArgs": [
-            "run-script",
-            "debug"
+            "start"
         ],
         "port": 5858,
-        "cwd": "${workspaceRoot}"
+        "cwd": "${workspaceRoot}/backend"
     },
         {
             "type": "node",

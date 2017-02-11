@@ -12,6 +12,8 @@ var routes = require('./routes/index');
 var users = require('./routes/user');
 var company = require('./routes/company');
 
+var eth = require('./services/ethereum');
+
 var app = express();
 
 var env = process.env.NODE_ENV || 'development';
@@ -74,6 +76,9 @@ app.use(function(err, req, res, next) {
         title: 'error'
     });
 });
+
+//Initialize ethereum
+eth.setup();
 
 
 module.exports = app;
