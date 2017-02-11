@@ -1,13 +1,18 @@
 import { LoginService } from './../../services/login-service';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'customer-login',
-  templateUrl: './customer-login.component.html',
-  styleUrls: ['./customer-login.component.css']
+  selector: 'login',
+  templateUrl: './login.html',
+  styleUrls: ['./login.css']
 })
-export class CustomerLoginComponent {
+export class LoginComponent {
+
+  @Input()
+  role;
+  @Input()
+  successPath;
 
   user = {};
   error;
@@ -16,9 +21,9 @@ export class CustomerLoginComponent {
 
   doLogin() {
     this.loginService
-      .doLoginForCustomer(this.user)
+      .login(this.user, this.role)
       .subscribe(
-      () => this.router.navigate(['/customer/home']),
+      () => this.router.navigate([this.successPath]),
       error => this.error = error
       );
   }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class LoginService {
@@ -8,17 +8,10 @@ export class LoginService {
   constructor(private http: Http) {
   }
 
-  doLoginForEmployer(user): Observable<any> {
+  login(user, role: string): Observable<any> {
     return this.http
-      .post('localhost:3000/company/login', user)
+      .post('http://localhost:3000/' + role + '/login', user, {})
       .map(response => response.json());
   }
-
-  doLoginForCustomer(user) {
-    return this.http
-      .post('localhost:3000/customer/login', user)
-      .map(response => response.json());
-  }
-
 
 }
