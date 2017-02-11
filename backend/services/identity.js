@@ -25,7 +25,7 @@ var accounts = [
             walletNo: 2,
             password: "test"
         },
-        type: "company"
+        type: "user"
     }
 ];
 

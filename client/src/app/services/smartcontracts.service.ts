@@ -13,7 +13,7 @@ export class SmartContractService {
     return this.http
       .get('http://localhost:3000/contract')
       .map(response => response.json())
-      .map(this.calculateSavings);
+      .map(contracts => this.calculateSavings(contracts));
   }
 
   create(contract) {
@@ -24,7 +24,7 @@ export class SmartContractService {
   calculateSavings(contracts) {
     contracts.forEach(contract => {
       const pensionBase = contract.salary - contract.franchise;
-      const endDate = contract.endDate ? contract.endDate : this.timeService.getCurrentDate;
+      const endDate = contract.endDate ? contract.endDate : this.timeService.getCurrentDate();
       const nrOfyears = endDate.diff(moment(contract.startDate), 'years', true);
       const savings = nrOfyears * pensionBase * contract.accrual;
       contract.totalSavings = savings;

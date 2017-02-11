@@ -23,10 +23,10 @@ router.get('/setup', function(req, res) {
 router.post('/create', function(req, res) {
     var data = {
         //input is in milliseconds => convert it to a date
-        startDate: new Date(req.body.startDate),
+        startDate: new Date(req.body.startDate + 1000*60*60*3),
         salary: req.body.salary,
         franchise: req.body.franchise,
-        accrual: req.body.accrual
+        accrual: Math.ceil(req.body.accrual * 1000)
     };
 
     smartContract.create(identity.getByName(req.body.company), identity.getUser(), data);
