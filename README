@@ -1,2 +1,8 @@
+one time:
+    geth init ./genesis.json
+
 start geth via :
-geth --verbosity 4 --networkid 536354 --nodiscover --autodag --rpcapi admin,db,debug,eth,miner,net,personal,shh,txpool,web3 --rpc --rpcport 8545 --rpcaddr 0.0.0.0  --rpccorsdomain '*' --etherbase 0xcd2a3d9f938e13cd947ec05abc7fe734df8dd826 --mine --autodag --minerthreads 2
+    geth --verbosity 4 --networkid 536354 --nodiscover --autodag --rpcapi admin,db,debug,eth,miner,net,personal,shh,txpool,web3 --rpc --rpcport 8545 --rpcaddr 0.0.0.0  --rpccorsdomain '*' --etherbase 0xcd2a3d9f938e13cd947ec05abc7fe734df8dd826 --mine --autodag --minerthreads 2
+
+once DAG generation is done, run (new window):
+    geth attach
