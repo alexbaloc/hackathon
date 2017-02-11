@@ -1,0 +1,23 @@
+.employer {
+    height: 100%;
+    width: 100%;
+    padding: 15px;
+}
+
+h1 {
+    display: inline-block;
+    border-bottom: 1px solid darkgray;
+    padding-bottom: 10px;
+}
+
+.smartcontract-1 h2 {
+    color: #e74c3c;
+}
+
+.smartcontract-2 h2 {
+    color: #2ecc71;
+}
+
+.smartcontract-3 h2 {
+    color: #3498db;
+}

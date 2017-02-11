@@ -1,0 +1,38 @@
+<div class="customer">
+  <h1>Customer</h1>
+
+  <div class="customer-table">
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th>Current Income</th>
+          <th>Pension today</th>
+          <th>Monthly pension expected</th>
+        </tr>
+        <tr>
+          <td>{{customer.currentIncome | currency:'EUR':true}}</td>
+          <td>{{customer.pensionToday | currency:'EUR':true}}</td>
+          <td>{{customer.pensionExpected | currency:'EUR':true}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="indicator-container">
+    <span>Pension Indicator: <i [ngClass]="{'healthy-indicator': customer.health === 'good', 'medium-indicator': customer.health === 'medium', 'bad-indicator': customer.health === 'bad'}" class="glyphicon glyphicon-record"></i> </span>
+  </div>
+
+  <div class="chat-bot">
+    <h2>PensionBot 2000</h2>
+    <div class="chat-bot-messages">
+      <div class="chat-bot-message" *ngFor="let message of messages" [ngClass]="{'user-message': message.sender === 'me', 'bot-message': message.sender === 'bot'}">
+        <span>
+          {{message.message}}
+        </span>
+      </div>
+    </div>
+    <input type="text" [(ngModel)]="chatBotInput" />
+    <a (click)="respondToComment()">Send</a>
+  </div>
+
+</div>

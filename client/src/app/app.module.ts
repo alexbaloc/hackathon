@@ -1,31 +1,33 @@
-import { LoginChoiceComponent } from './shared/login-choice/login-choice.component';
+import { PensionService } from './services/pension.service';
+import { AccrualComponent } from './accrual/accrual-component';
+import { CustomerComponent } from './customer/customer-component';
+import { EmployerComponent } from './employer/employer-component';
+import { StatusbarComponent } from './statusbar/statusbar-component';
 import { routing } from './../app.routing';
-import { EmployerLoginPageComponent } from './employer/login.page/login.page.component';
-import { CustomerLoginPageComponent } from './customer/login.page/login.page.component';
-import { LoginComponent } from './shared/login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { ChartsModule } from 'ng2-charts';
+
 
 import { AppComponent } from './app.component';
-import { LoginService } from './services/login-service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    CustomerLoginPageComponent,
-    EmployerLoginPageComponent,
-    LoginChoiceComponent
+    StatusbarComponent,
+    EmployerComponent,
+    AccrualComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    ChartsModule
   ],
-  providers: [LoginService],
+  providers: [PensionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
