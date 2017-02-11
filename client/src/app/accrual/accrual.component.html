@@ -3,8 +3,7 @@
 
   <div>
     <span>Current Time: {{getCurrentTime() | date:'shortDate'}}</span>
-    <button class="btn" (click)="play()">Play</button>
-    <button class="btn" (click)="pause()">Pause</button>
+    <button class="btn" (click)="togglePause()">{{isPaused() ? 'Play' : 'Pause'}}</button>
   </div>
 
 </div>

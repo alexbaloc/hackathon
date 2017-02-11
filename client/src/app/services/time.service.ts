@@ -8,7 +8,7 @@ export class TimeService {
 
   private currentDate;
   public paused = true;
-  private applicationObservable: Observable<void>;
+  private applicationObservable: Observable<any>;
 
   constructor() {
     this.currentDate = moment('2017-03-01');
@@ -17,7 +17,6 @@ export class TimeService {
 
   progressOneMonth() {
     this.currentDate.add(1, 'M');
-    console.log(this.currentDate.toString());
   }
 
   getCurrentDate() {
@@ -25,12 +24,10 @@ export class TimeService {
   }
 
   start() {
-    this.applicationObservable = Observable
-      .interval(5000)
+    this.applicationObservable = Observable.interval(5000)
       .takeWhile(() => !this.paused)
-      .map(() => this.progressOneMonth());
-
-    return this.applicationObservable;
+      .map(() => { this.progressOneMonth() })
+      .share();
   }
 
   play() {
@@ -43,6 +40,10 @@ export class TimeService {
 
   getApplicationObservable(): Observable<void> {
     return this.applicationObservable;
+  }
+
+  isPaused() {
+    return this.paused;
   }
 
 }

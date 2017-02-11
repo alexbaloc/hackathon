@@ -27,8 +27,16 @@ export class AccrualComponent extends OnInit {
     this.timeService.pause();
   }
 
-  play() {
-    this.timeService.play();
+  togglePause() {
+    if (this.isPaused()) {
+      this.timeService.play();
+    } else {
+      this.timeService.pause();
+    }
+  }
+
+  isPaused() {
+    return this.timeService.isPaused();
   }
 
   propagateChange() {
