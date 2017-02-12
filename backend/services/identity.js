@@ -19,6 +19,14 @@ var accounts = [
         type: "company"
     },
     {
+        name: "KPMG",
+        eth: {
+            walletNo: 4,
+            password: "test"
+        },
+        type: "company"
+    },
+    {
         name: "Alex",
         email: "alex@local.com",
         eth: {

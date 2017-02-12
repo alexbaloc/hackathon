@@ -13,6 +13,7 @@ router.get('/', function(req, res) {
 router.get('/setup', function(req, res) {
     ethereum.ensureFunds(identity.getByName('cegeka'));
     ethereum.ensureFunds(identity.getByName('BMW'));
+    ethereum.ensureFunds(identity.getByName('kpmg'));
 
     //also pre-compile the contract code to speed up next operations
     smartContract.cacheABI();
@@ -29,7 +30,11 @@ router.post('/create', function(req, res) {
         accrual: Math.ceil(req.body.accrual * 1000)
     };
 
-    smartContract.create(identity.getByName(req.body.company), identity.getUser(), data);
+    if (!smartContract.isContractCreated()) {
+        smartContract.create(identity.getByName(req.body.company), identity.getUser(), data);
+    } else {
+        smartContract.restart(identity.getByName(req.body.company), identity.getUser(), data);
+    }
     return res.json({message: 'ok'});
 });
 

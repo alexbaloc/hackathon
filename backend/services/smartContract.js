@@ -24,6 +24,10 @@ var getContractCode = function () {
     return contracts.cachedContract;
 }
 
+contracts.isContractCreated = function() {
+    return contracts.existing != undefined;
+}
+
 contracts.cacheABI = function () {
     getContractCode();
 }
@@ -161,9 +165,6 @@ contracts.getAllEvents = function () {
     var data = [];
     for (var i = 0; i < count; i++) {
         var results = prevContractInstance.getEventById(i);
-
-        console.log(Number(results[0]));
-        console.log(new Date(Number(results[0])));
 
         var entry =
             {
