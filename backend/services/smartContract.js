@@ -72,6 +72,8 @@ contracts.create = function (company, user, data) {
                     //save for later
                     contracts.existing = contract.address;
                 }
+            } else {
+                console.error('create error', e);
             }
         });
 }
@@ -98,6 +100,8 @@ contracts.close = function (company, user, date) {
         }, function (e, tx) {
             if (!e) {
                 console.log('closed instance', tx);
+            } else {
+                console.error('close error', e);
             }
         });
 }
@@ -127,6 +131,8 @@ contracts.restart = function (company, user, data) {
         }, function (e, tx) {
             if (!e) {
                 console.log('restart done', tx);
+            } else {
+                console.error('resume error', e);
             }
         });
 }
