@@ -158,7 +158,7 @@ contracts.getParsedEvents = function () {
 contracts.getAllEvents = function () {
     var prevContractInstance = getExistingInstance();
     if (!prevContractInstance) {
-        return;
+        return [];
     }
     var count = prevContractInstance.getCount();
 
