@@ -17,9 +17,14 @@ export class SmartContractService {
   }
 
   create(contract) {
-    contract.startDate = moment(contract.startDate).unix() * 1000;
     contract.accrual = parseFloat(contract.accrual);
+    contract.startDate = moment(contract.startDateUI).unix() * 1000;
     return this.http.post('http://localhost:3000/contract/create', contract);
+  }
+
+  close(contract) {
+    contract.date = moment(contract.dateUI).unix() * 1000;
+    return this.http.post('http://localhost:3000/contract/close', contract);
   }
 
   calculateSavings(contracts) {

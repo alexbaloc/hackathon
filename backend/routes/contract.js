@@ -13,6 +13,7 @@ router.get('/', function(req, res) {
 router.get('/setup', function(req, res) {
     ethereum.ensureFunds(identity.getByName('cegeka'));
     ethereum.ensureFunds(identity.getByName('BMW'));
+    ethereum.ensureFunds(identity.getByName('kpmg'));
 
     //also pre-compile the contract code to speed up next operations
     smartContract.cacheABI();
@@ -23,13 +24,18 @@ router.get('/setup', function(req, res) {
 router.post('/create', function(req, res) {
     var data = {
         //input is in milliseconds => convert it to a date
+        //apparently we must add at least one hour, otherwise the DST turns it into 23:00:00 the previous day
         startDate: new Date(req.body.startDate + 1000*60*60*3),
         salary: req.body.salary,
         franchise: req.body.franchise,
         accrual: Math.ceil(req.body.accrual * 1000)
     };
 
-    smartContract.create(identity.getByName(req.body.company), identity.getUser(), data);
+    if (!smartContract.isContractCreated()) {
+        smartContract.create(identity.getByName(req.body.company), identity.getUser(), data);
+    } else {
+        smartContract.restart(identity.getByName(req.body.company), identity.getUser(), data);
+    }
     return res.json({message: 'ok'});
 });
 
