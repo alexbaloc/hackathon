@@ -9,6 +9,7 @@
           <li>Annual Salary: {{smartcontract.salary}}</li>
           <li>Start Date: {{smartcontract.startDate | date:'yyyy-MM-dd'}}</li>
           <li *ngIf="smartcontract.endDate">End Date: {{smartcontract.endDate | date:'yyyy-MM-dd'}}</li>
+          <li *ngIf="smartcontract.endDate">End Date: {{smartcontract.endDate | date: 'yyyy-MM-dd'}}</li>
           <li>Employer: {{smartcontract.company}}</li>
           <li>Franchise Amount: {{smartcontract.franchise}}</li>
           <li>Rate: {{smartcontract.accrual}}</li>
