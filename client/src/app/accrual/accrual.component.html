@@ -2,7 +2,7 @@
   <h1>Console</h1>
 
   <div>
-    <span>Current Time: {{getCurrentTime() | date:'shortDate'}}</span>
+    <span>Current Time: {{getCurrentTime() | date:'yyyy-MM-dd'}}</span>
     <br />
     <button class="btn" (click)="togglePause()">{{isPaused() ? 'Play' : 'Pause'}}</button>
   </div>
