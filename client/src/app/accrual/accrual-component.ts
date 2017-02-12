@@ -14,6 +14,9 @@ export class AccrualComponent extends OnInit {
   newContract = {};
   successMessage = null;
 
+  closeContract = {};
+  closeMessage = null;
+
   constructor(private timeService: TimeService, private smartContractService: SmartContractService) {
     super();
   }
@@ -58,4 +61,12 @@ export class AccrualComponent extends OnInit {
       );
   }
 
+  terminateContract() {
+    this.smartContractService
+      .close(this.closeContract)
+      .subscribe(
+      () => this.closeMessage = 'Gelukt!',
+      error => this.closeMessage = JSON.stringify(error)
+      );
+  }
 }

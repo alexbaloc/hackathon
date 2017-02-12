@@ -24,6 +24,7 @@ router.get('/setup', function(req, res) {
 router.post('/create', function(req, res) {
     var data = {
         //input is in milliseconds => convert it to a date
+        //apparently we must add at least one hour, otherwise the DST turns it into 23:00:00 the previous day
         startDate: new Date(req.body.startDate + 1000*60*60*3),
         salary: req.body.salary,
         franchise: req.body.franchise,
