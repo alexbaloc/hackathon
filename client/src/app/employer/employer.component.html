@@ -10,9 +10,9 @@
           <li>Start Date: {{smartcontract.startDate | date:'yyyy-MM-dd'}}</li>
           <li *ngIf="smartcontract.endDate">End Date: {{smartcontract.endDate | date:'yyyy-MM-dd'}}</li>
           <li>Employer: {{smartcontract.company}}</li>
-          <li>Franchise Amount: {{smartcontract.franchise}}</li>
+          <li>Franchise Amount: {{smartcontract.franchise | currency:'EUR':true}}</li>
           <li>Rate: {{smartcontract.accrual}}</li>
-          <li>Total pension: {{smartcontract.totalSavings}}</li>
+          <li>Total pension: {{smartcontract.totalSavings | currency:'EUR':true}}</li>
         </ul>
       </div>
     </li>

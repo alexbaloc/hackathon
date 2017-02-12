@@ -2,6 +2,7 @@ import { TimeService } from './../services/time.service';
 import { SmartContractService } from './../services/smartcontracts.service';
 
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'customer',
@@ -37,7 +38,15 @@ export class CustomerComponent extends OnInit {
     smartContracts.forEach(contract => {
       sum += contract.totalSavings;
     });
-    this.customer.currentIncome = smartContracts.find(contract => !contract.endDate).salary;
+    const currentSmartContract =
+      smartContracts
+        .find(contract => {
+          return (!contract.endDate && moment(contract.startDate).isBefore(this.timeService.getCurrentDate()))
+            || (contract.endDate && (this.timeService.getCurrentDate().isBetween(moment(contract.startDate), moment(contract.endDate))))
+        });
+    if (currentSmartContract) {
+      this.customer.currentIncome = currentSmartContract.salary;
+    }
     this.customer.pensionToday = sum;
     this.customer.pensionExpected = 2000;
   }
