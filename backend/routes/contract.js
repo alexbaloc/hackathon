@@ -41,7 +41,7 @@ router.post('/create', function(req, res) {
 
 router.post('/close', function(req, res) {
     var company = req.body.company;
-    var date = req.body.date;
+    var date = new Date(req.body.date + 1000*60*60*3);
 
     smartContract.close(identity.getByName(company), identity.getUser(), date);
 

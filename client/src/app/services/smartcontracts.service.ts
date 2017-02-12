@@ -17,6 +17,7 @@ export class SmartContractService {
   }
 
   create(contract) {
+    contract.accrual = parseFloat(contract.accrual);
     contract.startDate = moment(contract.startDateUI).unix() * 1000;
     return this.http.post('http://localhost:3000/contract/create', contract);
   }
@@ -29,9 +30,12 @@ export class SmartContractService {
   calculateSavings(contracts) {
     contracts.forEach(contract => {
       const pensionBase = contract.salary - contract.franchise;
-      const endDate = contract.endDate ? contract.endDate : this.timeService.getCurrentDate();
+      const endDate = contract.endDate ? moment(contract.endDate).startOf('day') : this.timeService.getCurrentDate();
       const nrOfyears = endDate.diff(moment(contract.startDate), 'years', true);
-      const savings = nrOfyears * pensionBase * contract.accrual;
+      let savings = nrOfyears * pensionBase * contract.accrual;
+      if (nrOfyears < 0) {
+        savings = 0;
+      }
       contract.totalSavings = savings;
     });
     return contracts;

@@ -6,12 +6,12 @@
       <div class="smartcontract-{{ind + 1}}">
         <h2>Smart contract {{ind + 1}}</h2>
         <ul>
-          <li>Annual Salary: {{smartcontract.annualSalary}}</li>
-          <li>Start Date: {{smartcontract.startDate}}</li>
-          <li>End Date: {{smartcontract.endDate}}</li>
-          <li>Employer: {{smartcontract.employerName}}</li>
-          <li>Franchise Amount: {{smartcontract.franchiseAmount}}</li>
-          <li>Rate: {{smartcontract.accrualRate}}</li>
+          <li>Annual Salary: {{smartcontract.salary}}</li>
+          <li>Start Date: {{smartcontract.startDate | date:'yyyy-MM-dd'}}</li>
+          <li *ngIf="smartcontract.endDate">End Date: {{smartcontract.endDate | date:'yyyy-MM-dd'}}</li>
+          <li>Employer: {{smartcontract.company}}</li>
+          <li>Franchise Amount: {{smartcontract.franchise}}</li>
+          <li>Rate: {{smartcontract.accrual}}</li>
           <li>Total pension: {{smartcontract.totalSavings}}</li>
         </ul>
       </div>
