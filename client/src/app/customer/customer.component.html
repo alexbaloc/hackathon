@@ -7,12 +7,10 @@
         <tr>
           <th>Current Income</th>
           <th>Pension today</th>
-          <th>Monthly pension expected</th>
         </tr>
         <tr>
           <td>{{customer.currentIncome | currency:'EUR':true}}</td>
           <td>{{customer.pensionToday | currency:'EUR':true}}</td>
-          <td>{{customer.pensionExpected | currency:'EUR':true}}</td>
         </tr>
       </tbody>
     </table>
