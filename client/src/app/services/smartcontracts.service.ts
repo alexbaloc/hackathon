@@ -30,7 +30,9 @@ export class SmartContractService {
   calculateSavings(contracts) {
     contracts.forEach(contract => {
       const pensionBase = contract.salary - contract.franchise;
-      const endDate = contract.endDate ? moment(contract.endDate).startOf('day') : this.timeService.getCurrentDate();
+      const endDate = contract.endDate 
+        ? moment.min(moment(contract.endDate).startOf('day'), this.timeService.getCurrentDate())
+        : this.timeService.getCurrentDate();
       const nrOfyears = endDate.diff(moment(contract.startDate), 'years', true);
       let savings = nrOfyears * pensionBase * contract.accrual;
       if (nrOfyears < 0) {

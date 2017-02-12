@@ -6,7 +6,7 @@
       <div class="smartcontract-{{ind + 1}}">
         <h2>Smart contract {{ind + 1}}</h2>
         <ul>
-          <li>Annual Salary: {{smartcontract.salary}}</li>
+          <li>Annual Salary: {{smartcontract.salary | currency:'EUR':true}}</li>
           <li>Start Date: {{smartcontract.startDate | date:'yyyy-MM-dd'}}</li>
           <li *ngIf="smartcontract.endDate">End Date: {{smartcontract.endDate | date:'yyyy-MM-dd'}}</li>
           <li>Employer: {{smartcontract.company}}</li>

@@ -53,6 +53,7 @@ export class AccrualComponent extends OnInit {
   }
 
   addContract() {
+    this.successMessage = "";
     this.smartContractService
       .create(this.newContract)
       .subscribe(
@@ -62,6 +63,7 @@ export class AccrualComponent extends OnInit {
   }
 
   terminateContract() {
+    this.closeMessage = "";
     this.smartContractService
       .close(this.closeContract)
       .subscribe(
