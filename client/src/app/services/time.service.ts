@@ -16,7 +16,9 @@ export class TimeService {
   }
 
   progressOneMonth() {
-    this.currentDate.add(1, 'M');
+    if (!this.paused) {
+      this.currentDate.add(1, 'M');
+    }
   }
 
   getCurrentDate() {
@@ -25,7 +27,7 @@ export class TimeService {
 
   start() {
     this.applicationObservable = Observable.interval(5000)
-      .filter(() => !this.paused)
+      // .filter(() => !this.paused)
       .map(() => this.progressOneMonth())
       .share();
   }
