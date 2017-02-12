@@ -1,3 +1,4 @@
+import { TimeService } from './../services/time.service';
 import { SmartContractService } from './../services/smartcontracts.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -16,15 +17,18 @@ export class CustomerComponent extends OnInit {
     health: 'good'
   };
 
-  constructor(private smartContractService: SmartContractService) {
+  constructor(private smartContractService: SmartContractService, private timeService: TimeService) {
     super();
   }
 
   ngOnInit() {
-    this.smartContractService
-      .getSmartContracts()
-      .subscribe(smartContracts => {
-        this.calculateTotals(smartContracts);
+    this.timeService
+      .getApplicationObservable().subscribe(() => {
+        this.smartContractService
+          .getSmartContracts()
+          .subscribe(smartContracts => {
+            this.calculateTotals(smartContracts);
+          });
       });
   }
 
