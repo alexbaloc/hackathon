@@ -46,7 +46,10 @@ export class CustomerComponent extends OnInit {
         });
     if (currentSmartContract) {
       this.customer.currentIncome = currentSmartContract.salary;
+    } else {
+      this.customer.currentIncome = 0;
     }
+
     this.customer.pensionToday = sum;
     this.customer.pensionExpected = 2000;
   }
